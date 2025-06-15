@@ -1,85 +1,175 @@
+/* General Reset and Base Styles */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
-  margin: 0;
-  padding: 20px;
+  background: #f2f6fc;
+  color: #333;
+  padding: 40px 20px;
 }
+
+/* Container */
 .container {
-  max-width: 400px;
+  max-width: 500px;
   margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-h2, h3 {
-  margin-top: 0;
+
+/* Headings */
+h2 {
   text-align: center;
-}
-.money {
-  font-size: 18px;
-}
-.plus {
-  color: green;
-}
-.minus {
-  color: red;
-}
-.inc-exp-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.list li {
-  background: #eee;
-  padding: 10px;
-  margin: 5px 0;
-  border-right: 5px solid;
-  display: flex;
-  justify-content: space-between;
-}
-.list li.plus {
-  border-color: green;
-}
-.list li.minus {
-  border-color: red;
-}
-.form-control {
+  color: #2c3e50;
   margin-bottom: 10px;
 }
-input, button {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-.btn {
-  background: #2ecc71;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.btn:hover {
-  opacity: 0.9;
-}
-.radio-group {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
+h3 {
+  color: #555;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
+/* Balance */
+#balance {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Income & Expense Summary */
+.inc-exp-container {
+  display: flex;
+  justify-content: space-between;
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+.inc-exp-container div {
+  text-align: center;
+  width: 45%;
+}
+.money {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.plus {
+  color: #2ecc71;
+}
+.minus {
+  color: #e74c3c;
+}
+
+/* Transaction History */
+.list {
+  list-style: none;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding: 0;
+}
+.list li {
+  background: #f8f8f8;
+  padding: 12px 16px;
+  border-right: 5px solid;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* Add this for the description and amount spacing */
+.list li .text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list li .amount {
+  text-align: right;
+  min-width: 100px;
+}
+
+.list li.plus {
+  border-color: #2ecc71;
+}
+.list li.minus {
+  border-color: #e74c3c;
+}
+.list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+/* Form */
+.form-control {
+  margin-bottom: 15px;
+}
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+}
+
+/* Radio Buttons */
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 15px;
+}
 .radio-group label {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  margin: 0;
+  font-weight: 500;
 }
+.radio-group input {
+  margin-right: 6px;
+}
+
+/* Submit Button */
+.btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background: #2980b9;
+}
+
