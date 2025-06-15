@@ -45,7 +45,13 @@ h2, h3 {
   margin: 5px 0;
   border-right: 5px solid;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 10px;
+}
+.list li span {
+  white-space: nowrap;
+  margin-left: auto;
 }
 .list li.plus {
   border-color: green;
@@ -56,7 +62,7 @@ h2, h3 {
 .form-control {
   margin-bottom: 10px;
 }
-input, button {
+input, select, button {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -76,10 +82,17 @@ input, button {
   align-items: center;
   margin-bottom: 10px;
 }
-
 .radio-group label {
   display: flex;
   align-items: center;
   gap: 0.3rem;
   margin: 0;
+}
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
 }
