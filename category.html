@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Categories</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+    .category-item {
+      display: flex;
+      justify-content: space-between;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Manage Categories</h2>
+  <input type="text" id="categoryInput" placeholder="Enter category name">
+  <button onclick="addCategory()">Add</button>
+  <ul id="categoryList"></ul>
+
+  <script>
+    const categoryInput = document.getElementById('categoryInput');
+    const categoryList = document.getElementById('categoryList');
+
+    // Get categories from localStorage
+    function getCategories() {
+      return JSON.parse(localStorage.getItem('categories') || '[]');
+    }
+
+    // Save categories to localStorage
+    function saveCategories(categories) {
+      localStorage.setItem('categories', JSON.stringify(categories));
+    }
+
+    // Render categories in the list
+    function renderCategories() {
+      const categories = getCategories();
+      categoryList.innerHTML = '';
+      categories.forEach((category, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="category-item">
+            <span>${category}</span>
+            <button onclick="deleteCategory(${index})">Delete</button>
+          </div>
+        `;
+        categoryList.appendChild(li);
+      });
+    }
+
+    // Add a new category
+    function addCategory() {
+      const name = categoryInput.value.trim();
+      if (!name) return alert('Please enter a category name.');
+      const categories = getCategories();
+      if (categories.includes(name)) return alert('Category already exists.');
+      categories.push(name);
+      saveCategories(categories);
+      categoryInput.value = '';
+      renderCategories();
+    }
+
+    // Delete a category
+    function deleteCategory(index) {
+      const categories = getCategories();
+      categories.splice(index, 1);
+      saveCategories(categories);
+      renderCategories();
+    }
+
+    // Initialize the page by rendering existing categories
+    renderCategories();
+  </script>
+</body>
+</html>

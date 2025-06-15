@@ -1,85 +1,96 @@
-* {
-  box-sizing: border-box;
-}
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
+  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  background-color: #f4f4f4;
 }
+
 .container {
-  max-width: 400px;
-  margin: auto;
-  background: white;
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto;
   padding: 20px;
+  background-color: white;
   border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-h2, h3 {
-  margin-top: 0;
+
+h1, h2, h3 {
   text-align: center;
 }
-.money {
-  font-size: 18px;
+
+.balance-container, .inc-exp-container {
+  text-align: center;
+  margin-bottom: 20px;
 }
+
+.money {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .plus {
   color: green;
 }
+
 .minus {
   color: red;
 }
-.inc-exp-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.list li {
-  background: #eee;
-  padding: 10px;
-  margin: 5px 0;
-  border-right: 5px solid;
-  display: flex;
-  justify-content: space-between;
-}
-.list li.plus {
-  border-color: green;
-}
-.list li.minus {
-  border-color: red;
-}
+
 .form-control {
   margin-bottom: 10px;
 }
-input, button {
+
+input, select, button {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 5px;
+  font-size: 16px;
 }
-.btn {
-  background: #2ecc71;
+
+button {
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
 }
-.btn:hover {
-  opacity: 0.9;
-}
-.radio-group {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 10px;
+
+button:hover {
+  background-color: #45a049;
 }
 
-.radio-group label {
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin: 5px 0;
+  border-radius: 4px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.3rem;
-  margin: 0;
+}
+
+.minus {
+  background-color: #ffdddd;
+}
+
+.plus {
+  background-color: #ddffdd;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
 }
