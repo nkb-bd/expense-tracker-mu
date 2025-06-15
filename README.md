@@ -1,5 +1,9 @@
 # Expense Tracker (Vanilla JavaScript)
 
+Name: Syeda Alvi Muniath
+ID: 231-134-026
+
+
 A simple project to track income and expenses.
 
 ## 🔧 Features
