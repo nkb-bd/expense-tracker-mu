@@ -1,85 +1,131 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
-  margin: 0;
-  padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #b1bde6;
+    margin: 0;
+    padding: 20px;
 }
+
 .container {
-  max-width: 400px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 25px #7c98f3;
 }
-h2, h3 {
-  margin-top: 0;
-  text-align: center;
+
+h2,h3{
+    margin-top: 0;
+    text-align: center;
 }
+
 .money {
-  font-size: 18px;
+    font-size: 2;
+    letter-spacing: 1px;
+    margin: 5px 0;
 }
+
 .plus {
-  color: green;
+    color: green;
 }
+
 .minus {
-  color: red;
+    color: red;
 }
+
 .inc-exp-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
 }
+
 .list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
+
 .list li {
-  background: #eee;
-  padding: 10px;
-  margin: 5px 0;
-  border-right: 5px solid;
-  display: flex;
-  justify-content: space-between;
+    background: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-right: 5px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 5px  #7f96df ;
 }
+
 .list li.plus {
-  border-color: green;
+    border-color: green;
 }
+
 .list li.minus {
-  border-color: red;
+    border-color: red;
 }
+
 .form-control {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
-input, button {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+
+input, button, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
 }
+
 .btn {
-  background: #2ecc71;
-  color: white;
-  border: none;
-  cursor: pointer;
+    background: #2e50cc;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
+
 .btn:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
+
 .radio-group {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 10px;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0;
+}
+
+.transaction-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-btn {
+    background-color: #ff4d4f;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
