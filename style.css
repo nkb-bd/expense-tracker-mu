@@ -3,20 +3,31 @@
 }
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
+  background: #f6f6f6;
   margin: 0;
   padding: 20px;
 }
 .container {
   max-width: 400px;
   margin: auto;
+  padding: 30px;
   background: white;
-  padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 h2, h3 {
-  margin-top: 0;
   text-align: center;
+}
+.balance h1 {
+  margin: 0;
+}
+.inc-exp-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 8px;
 }
 .money {
   font-size: 18px;
@@ -27,25 +38,19 @@ h2, h3 {
 .minus {
   color: red;
 }
-.inc-exp-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-}
 .list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
-  margin: 0;
+  margin-bottom: 30px;
 }
 .list li {
-  background: #eee;
-  padding: 10px;
-  margin: 5px 0;
+  background: #fff;
   border-right: 5px solid;
   display: flex;
   justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
 }
 .list li.plus {
   border-color: green;
@@ -53,33 +58,26 @@ h2, h3 {
 .list li.minus {
   border-color: red;
 }
-.form-control {
-  margin-bottom: 10px;
-}
-input, button {
+form input, form button {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+  padding: 10px;
+  margin: 10px 0;
 }
-.btn {
-  background: #2ecc71;
+form button {
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
 }
-.btn:hover {
-  opacity: 0.9;
+form button:hover {
+  background-color: #0056b3;
 }
-.radio-group {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  margin: 0;
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
 }
