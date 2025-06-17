@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Expense Tracker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -37,16 +37,32 @@
         <input type="number" id="amount" placeholder="Enter amount..." />
       </div>
 
+      <div class="form-control">
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="" disabled selected>Select category</option>
+          <option value="Food">Food</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Salary">Salary</option>
+          <option value="Bills">Bills</option>
+          <option value="Rent">Rent</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
       <div class="form-control radio-group">
         <label>
-          <input type="radio" name="transactionType" value="expense" checked>
+          <input type="radio" name="transactionType" value="expense" checked />
           Expense
         </label>
         <label>
-          <input type="radio" name="transactionType" value="income">
+          <input type="radio" name="transactionType" value="income" />
           Income
         </label>
       </div>
+
       <button class="btn">Add Transaction</button>
     </form>
   </div>
