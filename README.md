@@ -7,7 +7,7 @@ A simple project to track income and expenses.
 - Remove transactions
 - View total balance, income, and expense
 - LocalStorage data persistence
-- Add category Page to add a cateogry in each transaction
+- Add category Page to add a category in each transaction
 
 ## 🚀 How to Run
 1. Fork and Download the repository.
