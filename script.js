@@ -1,101 +1,113 @@
 class ExpenseTracker {
   constructor() {
-    this.balance = document.getElementById("balance");
-    this.money_plus = document.getElementById("money-plus");
-    this.money_minus = document.getElementById("money-minus");
-    this.list = document.getElementById("list");
-    this.form = document.getElementById("form");
-    this.text = document.getElementById("text");
-    this.amount = document.getElementById("amount");
-    this.transactionTypeInputs = document.getElementsByName("transactionType");
+    this.$balance = $("#balance");
+    this.$money_plus = $("#money-plus");
+    this.$money_minus = $("#money-minus");
+    this.$list = $("#list");
+    this.$form = $("#form");
+    this.$text = $("#text");
+    this.$amount = $("#amount");
+    this.$category = $("#category");
+    this.$transactionTypeInputs = $("input[name='transactionType']");
+
     this.transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-    // Uncomment to initialize
-    // this.init();
-
-    // Uncomment to add event listener
-    // this.form.addEventListener("submit", this.addTransaction.bind(this));
+    this.init();
+    this.$form.on("submit", this.addTransaction.bind(this));
   }
-
-  // Step 1: Only keep addTransaction active, comment others
 
   addTransaction(e) {
     e.preventDefault();
 
-    if (this.text.value.trim() === "" || this.amount.value.trim() === "") {
-      alert("Please enter text and amount");
+    if (
+      this.$text.val().trim() === "" ||
+      this.$amount.val().trim() === "" ||
+      this.$category.val() === null ||
+      this.$category.val() === ""
+    ) {
+      alert("Please enter text, amount, and category");
       return;
     }
 
-    let amt = Math.abs(+this.amount.value);
+    let amt = Math.abs(+this.$amount.val());
     const type = this.getSelectedTransactionType();
     if (type === "expense") amt = -amt;
 
     const transaction = {
       id: Date.now(),
-      text: this.text.value,
+      text: this.$text.val().trim(),
       amount: amt,
+      category: this.$category.val().trim(),
     };
 
+    this.transactions.push(transaction);
+    this.addTransactionDOM(transaction);
+    this.updateValues();
+    this.updateLocalStorage();
 
-    // Add your code here to add transaction to the list
+    // Clear inputs
+    this.$text.val("");
+    this.$amount.val("");
+    this.$category.val("");
   }
 
-  // Step 2: Uncomment this to add transaction to DOM
-  /*
   addTransactionDOM(transaction) {
-    const item = document.createElement("li");
-    item.classList.add(transaction.amount < 0 ? "minus" : "plus");
-    item.innerHTML = `Write your code here, this is an example!   `;
-    this.list.appendChild(item);
-  }
-  */
+    const itemClass = transaction.amount < 0 ? "minus" : "plus";
+    const sign = transaction.amount < 0 ? "-" : "+";
+    const amount = Math.abs(transaction.amount).toFixed(2);
 
-  // Step 3: Uncomment to update values
-  /*
+    const $item = $(`
+      <li class="${itemClass}">
+        <div>
+          <strong>${transaction.text}</strong> 
+          <span class="category">(${transaction.category})</span>
+        </div>
+        <span>${sign}$${amount}</span>
+        <button class="delete-btn">x</button>
+      </li>
+    `);
+
+    $item.find(".delete-btn").on("click", () => this.removeTransaction(transaction.id));
+    this.$list.append($item);
+  }
+
   updateValues() {
-    const amounts = this.transactions.map(t => t.amount);
+    const amounts = this.transactions.map((t) => t.amount);
     const total = amounts.reduce((acc, item) => acc + item, 0).toFixed(2);
-    // write your code here, this is an example!
-    // update the balance, money_plus, and money_minus elements
-  }
-  */
+    const income = amounts
+      .filter((item) => item > 0)
+      .reduce((acc, item) => acc + item, 0)
+      .toFixed(2);
+    const expense = (
+      amounts.filter((item) => item < 0).reduce((acc, item) => acc + item, 0) * -1
+    ).toFixed(2);
 
-  // Step 4: Uncomment to get selected transaction type
-  /*
+    this.$balance.text(`$${total}`);
+    this.$money_plus.text(`+$${income}`);
+    this.$money_minus.text(`-$${expense}`);
+  }
+
   getSelectedTransactionType() {
-    for (const input of this.transactionTypeInputs) {
-      if (input.checked) return input.value;
-    }
-    return "expense"; // default
+    return this.$transactionTypeInputs.filter(":checked").val() || "expense";
   }
-  */
 
-  // Step 5: Uncomment to remove transaction
-  /*
   removeTransaction(id) {
-    //write your code here, this is an example!
-   
+    this.transactions = this.transactions.filter((t) => t.id !== id);
+    this.updateLocalStorage();
+    this.init();
   }
-  */
 
-  // Step 6: Uncomment to update local storage
-  /*
   updateLocalStorage() {
     localStorage.setItem("transactions", JSON.stringify(this.transactions));
   }
-  */
 
-  // Step 7: Uncomment to initialize
-  /*
   init() {
-    this.list.innerHTML = "";
+    this.$list.empty();
     this.transactions.forEach(this.addTransactionDOM.bind(this));
     this.updateValues();
   }
-  */
 }
 
-// Usage example:
-// const tracker = new ExpenseTracker();
-//
+$(document).ready(function () {
+  window.tracker = new ExpenseTracker();
+});
