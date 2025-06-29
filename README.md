@@ -1,67 +1,62 @@
-# Expense Tracker (Vanilla JavaScript)
+# 💸 Expense Tracker App
 
-A simple project to track income and expenses.
-
-## 🔧 Features
-- Add income or expense
-- Remove transactions
-- View total balance, income, and expense
-- LocalStorage data persistence
-- Add category Page to add a cateogry in each transaction
-
-## 🚀 How to Run
-1. Fork and Download the repository.
-2. Open `index.html` in your browser.
-
-## 📚 For Students
-To contribute:
-1. Fork this repo
-2. Make your improvements (new features, better UI, charts, etc.)
-3. Submit a pull request
-
-## 💡 Bonus Ideas
-- Add categories
-- Include a chart
-- Export transactions
-
-# Hints to Complete the Expense Tracker Project
-
-1. **HTML Structure**  
-   - Think about what sections you need: balance, income/expense summary, transaction history, and a form to add new transactions.
-   - Use input fields for text and amount, and radio buttons for selecting income or expense.
-
-2. **Getting Elements in JavaScript**  
-   - Learn how to select HTML elements using `getElementById` or similar methods.
-   - Store references to the elements you will update or read from.
-
-3. **Handling Form Submission**  
-   - Prevent the default form action so the page doesn’t reload.
-   - Read the values from the input fields and radio buttons when the form is submitted.
-
-4. **Storing Transactions**  
-   - Use an array to keep track of all transactions.
-   - Each transaction should have a unique id, a description, an amount, and a type (income or expense).
-
-5. **Updating the UI**  
-   - When a new transaction is added, update the transaction list in the HTML.
-   - Update the balance, income, and expense values.
-
-6. **Persisting Data**  
-   - Use `localStorage` to save the transactions array so data stays after refreshing.
-   - Load transactions from `localStorage` when the app starts.
-
-7. **Deleting Transactions**  
-   - Add a way to remove a transaction (like an "x" button).
-   - When a transaction is deleted, update the array, UI, and `localStorage`.
-
-8. **Testing**  
-   - Try adding, deleting, and refreshing to make sure everything works as expected.
-
-9. **Styling**  
-   - Use CSS to make your app look clean and organized.
-
-10. **Debugging**  
-    - Use `console.log()` to check values and understand what your code is doing at each step.
+A simple and interactive Expense Tracker app built using **HTML**, **CSS**, and **JavaScript**. Easily add and remove your income/expenses and track your balance in real-time.
 
 ---
-Take it step by step
+
+## 🔧 Tech Stack
+- HTML
+- CSS
+- JavaScript
+
+---
+
+## ✨ Features
+
+- ✅ Add new transactions
+- ✅ Delete transactions
+- ✅ Shows income, expense, and total balance
+- ✅ Real-time updates
+- ✅ Clean and responsive UI
+
+---
+
+## 🌐 Live Demo
+🔗 [Click to View Live](https://laxmishaha028.github.io/expense-tracker-mu/)  
+*(Make sure GitHub Pages is enabled in repo settings)*
+
+---
+
+## 📸 Screenshots
+
+| Desktop View | Mobile View |
+|--------------|-------------|
+| ![Desktop Screenshot](screenshot-desktop.png) | ![Mobile Screenshot](screenshot-mobile.png) |
+
+> 🔔 **Note:** Replace these screenshot file names with your actual image paths. Upload them in the repo or use hosted image URLs.
+
+---
+
+## 🚀 How to Run Locally
+
+```bash
+git clone https://github.com/LaxmiShaha028/expense-tracker-mu.git
+cd expense-tracker-mu
+open index.html
+🧠 Future Improvements
+Add dark mode toggle
+
+Store transactions in browser's Local Storage
+
+Add monthly report with graphs (e.g., using Chart.js)
+
+🙋‍♀️ Author
+Laxmi Rani Shaha
+📍 Sylhet, Bangladesh
+📫 Email: your@email.com
+🔗 GitHub: LaxmiShaha028
+
+## ⭐ Feedback
+
+💖 If you found this project helpful or interesting, consider giving it a ⭐ on GitHub.  
+🛠️ You are welcome to fork it, report bugs, or suggest new features!
