@@ -83,3 +83,57 @@ input, button {
   gap: 0.3rem;
   margin: 0;
 }
+.list li {
+  background: #fff;
+  padding: 12px 16px;
+  margin: 8px 0;
+  border-left: 5px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.2s ease;
+}
+
+.list li:hover {
+  background: #f3f3f3;
+}
+
+.list li.plus {
+  border-color: #2ecc71;
+}
+
+.list li.minus {
+  border-color: #e74c3c;
+}
+
+.transaction-text {
+  font-weight: 500;
+}
+
+.transaction-amount {
+  font-weight: 500;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #e74c3c;
+}
+
+.transaction-text em {
+  font-style: italic;
+  font-weight: 400;
+  color: #555;
+  font-size: 0.9em;
+  margin-left: 5px;
+}
