@@ -7,23 +7,99 @@ class ExpenseTracker {
     this.form = document.getElementById("form");
     this.text = document.getElementById("text");
     this.amount = document.getElementById("amount");
+    this.category = document.getElementById("category");
     this.transactionTypeInputs = document.getElementsByName("transactionType");
+    this.categoryForm = document.getElementById("category-form");
+    this.categoryName = document.getElementById("category-name");
+    this.categoryTypeInputs = document.getElementsByName("categoryType");
+    this.incomeCategories = document.getElementById("income-categories");
+    this.expenseCategories = document.getElementById("expense-categories");
+    
+    // Load data from localStorage
     this.transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-
-    // Uncomment to initialize
-    // this.init();
-
-    // Uncomment to add event listener
-    // this.form.addEventListener("submit", this.addTransaction.bind(this));
+    this.categories = JSON.parse(localStorage.getItem("categories")) || this.getDefaultCategories();
+    
+    this.init();
+    this.setupEventListeners();
   }
 
-  // Step 1: Only keep addTransaction active, comment others
+  getDefaultCategories() {
+    return [
+      { id: 1, name: "Salary", type: "income" },
+      { id: 2, name: "Freelance", type: "income" },
+      { id: 3, name: "Investment", type: "income" },
+      { id: 4, name: "Food", type: "expense" },
+      { id: 5, name: "Transportation", type: "expense" },
+      { id: 6, name: "Entertainment", type: "expense" },
+      { id: 7, name: "Shopping", type: "expense" },
+      { id: 8, name: "Bills", type: "expense" }
+    ];
+  }
+
+  setupEventListeners() {
+    // Form submission
+    this.form.addEventListener("submit", this.addTransaction.bind(this));
+    
+    // Category form submission
+    this.categoryForm.addEventListener("submit", this.addCategory.bind(this));
+    
+    // Transaction type change
+    this.transactionTypeInputs.forEach(input => {
+      input.addEventListener("change", this.updateCategoryOptions.bind(this));
+    });
+    
+    // Tab navigation
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', this.switchTab.bind(this));
+    });
+    
+    // Delete transaction
+    this.list.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete-btn')) {
+        this.removeTransaction(parseInt(e.target.dataset.id));
+      }
+    });
+    
+    // Delete category
+    this.incomeCategories.addEventListener('click', (e) => {
+      if (e.target.classList.contains('category-delete-btn')) {
+        this.removeCategory(parseInt(e.target.dataset.id));
+      }
+    });
+    
+    this.expenseCategories.addEventListener('click', (e) => {
+      if (e.target.classList.contains('category-delete-btn')) {
+        this.removeCategory(parseInt(e.target.dataset.id));
+      }
+    });
+  }
+
+  switchTab(e) {
+    const targetTab = e.target.dataset.tab;
+    
+    // Update active tab
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    e.target.classList.add('active');
+    
+    // Show target content
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    document.getElementById(targetTab).classList.add('active');
+    
+    // Update categories display if switching to categories tab
+    if (targetTab === 'categories') {
+      this.updateCategoriesDisplay();
+    }
+  }
 
   addTransaction(e) {
     e.preventDefault();
 
-    if (this.text.value.trim() === "" || this.amount.value.trim() === "") {
-      alert("Please enter text and amount");
+    if (this.text.value.trim() === "" || this.amount.value.trim() === "" || this.category.value === "") {
+      alert("Please fill in all fields including category");
       return;
     }
 
@@ -35,67 +111,177 @@ class ExpenseTracker {
       id: Date.now(),
       text: this.text.value,
       amount: amt,
+      categoryId: parseInt(this.category.value),
+      type: type
     };
 
-
-    // Add your code here to add transaction to the list
+    this.transactions.push(transaction);
+    this.addTransactionDOM(transaction);
+    this.updateValues();
+    this.updateLocalStorage();
+    
+    // Clear form
+    this.text.value = "";
+    this.amount.value = "";
+    this.category.value = "";
   }
 
-  // Step 2: Uncomment this to add transaction to DOM
-  /*
   addTransactionDOM(transaction) {
+    const sign = transaction.amount < 0 ? "-" : "+";
+    const category = this.categories.find(cat => cat.id === transaction.categoryId);
+    const categoryName = category ? category.name : "Unknown";
+    
     const item = document.createElement("li");
     item.classList.add(transaction.amount < 0 ? "minus" : "plus");
-    item.innerHTML = `Write your code here, this is an example!   `;
+    item.innerHTML = `
+      <div class="transaction-info">
+        <div>${transaction.text}</div>
+        <div class="transaction-category">${categoryName}</div>
+      </div>
+      <div>
+        ${sign}$${Math.abs(transaction.amount).toFixed(2)}
+        <button class="delete-btn" data-id="${transaction.id}">×</button>
+      </div>
+    `;
     this.list.appendChild(item);
   }
-  */
 
-  // Step 3: Uncomment to update values
-  /*
   updateValues() {
     const amounts = this.transactions.map(t => t.amount);
     const total = amounts.reduce((acc, item) => acc + item, 0).toFixed(2);
-    // write your code here, this is an example!
-    // update the balance, money_plus, and money_minus elements
-  }
-  */
+    const income = amounts
+      .filter(item => item > 0)
+      .reduce((acc, item) => acc + item, 0)
+      .toFixed(2);
+    const expense = (amounts
+      .filter(item => item < 0)
+      .reduce((acc, item) => acc + item, 0) * -1)
+      .toFixed(2);
 
-  // Step 4: Uncomment to get selected transaction type
-  /*
+    this.balance.innerText = `$${total}`;
+    this.money_plus.innerText = `+$${income}`;
+    this.money_minus.innerText = `-$${expense}`;
+  }
+
   getSelectedTransactionType() {
     for (const input of this.transactionTypeInputs) {
       if (input.checked) return input.value;
     }
     return "expense"; // default
   }
-  */
 
-  // Step 5: Uncomment to remove transaction
-  /*
-  removeTransaction(id) {
-    //write your code here, this is an example!
-   
+  getSelectedCategoryType() {
+    for (const input of this.categoryTypeInputs) {
+      if (input.checked) return input.value;
+    }
+    return "expense"; // default
   }
-  */
 
-  // Step 6: Uncomment to update local storage
-  /*
+  removeTransaction(id) {
+    this.transactions = this.transactions.filter(transaction => transaction.id !== id);
+    this.updateLocalStorage();
+    this.init();
+  }
+
   updateLocalStorage() {
     localStorage.setItem("transactions", JSON.stringify(this.transactions));
+    localStorage.setItem("categories", JSON.stringify(this.categories));
   }
-  */
 
-  // Step 7: Uncomment to initialize
-  /*
+  updateCategoryOptions() {
+    const selectedType = this.getSelectedTransactionType();
+    const filteredCategories = this.categories.filter(cat => cat.type === selectedType);
+    
+    this.category.innerHTML = '<option value="">Select Category</option>';
+    filteredCategories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category.id;
+      option.textContent = category.name;
+      this.category.appendChild(option);
+    });
+  }
+
+  addCategory(e) {
+    e.preventDefault();
+    
+    const name = this.categoryName.value.trim();
+    const type = this.getSelectedCategoryType();
+    
+    if (name === "") {
+      alert("Please enter a category name");
+      return;
+    }
+    
+    // Check if category already exists
+    const exists = this.categories.some(cat => 
+      cat.name.toLowerCase() === name.toLowerCase() && cat.type === type
+    );
+    
+    if (exists) {
+      alert("This category already exists!");
+      return;
+    }
+    
+    const category = {
+      id: Date.now(),
+      name: name,
+      type: type
+    };
+    
+    this.categories.push(category);
+    this.updateLocalStorage();
+    this.updateCategoriesDisplay();
+    this.updateCategoryOptions();
+    
+    // Clear form
+    this.categoryName.value = "";
+  }
+
+  removeCategory(id) {
+    // Check if category is being used
+    const isUsed = this.transactions.some(transaction => transaction.categoryId === id);
+    
+    if (isUsed) {
+      alert("Cannot delete this category as it is being used in transactions!");
+      return;
+    }
+    
+    if (confirm("Are you sure you want to delete this category?")) {
+      this.categories = this.categories.filter(category => category.id !== id);
+      this.updateLocalStorage();
+      this.updateCategoriesDisplay();
+      this.updateCategoryOptions();
+    }
+  }
+
+  updateCategoriesDisplay() {
+    this.incomeCategories.innerHTML = "";
+    this.expenseCategories.innerHTML = "";
+    
+    this.categories.forEach(category => {
+      const li = document.createElement('li');
+      li.classList.add(`${category.type}-category`);
+      li.innerHTML = `
+        <span>${category.name}</span>
+        <button class="category-delete-btn" data-id="${category.id}">Delete</button>
+      `;
+      
+      if (category.type === 'income') {
+        this.incomeCategories.appendChild(li);
+      } else {
+        this.expenseCategories.appendChild(li);
+      }
+    });
+  }
+
   init() {
     this.list.innerHTML = "";
     this.transactions.forEach(this.addTransactionDOM.bind(this));
     this.updateValues();
+    this.updateCategoryOptions();
+    this.updateCategoriesDisplay();
   }
-  */
 }
 
-// Usage example:
-// const tracker = new ExpenseTracker();
-//
+// Initialize the expense tracker
+const tracker = new ExpenseTracker();

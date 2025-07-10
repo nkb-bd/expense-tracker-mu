@@ -8,47 +8,99 @@
 </head>
 <body>
   <div class="container">
-    <h2>Expense Tracker</h2>
-    <h3>Your Balance</h3>
-    <h1 id="balance">$0.00</h1>
-
-    <div class="inc-exp-container">
-      <div>
-        <h4>Income</h4>
-        <p id="money-plus" class="money plus">+$0.00</p>
-      </div>
-      <div>
-        <h4>Expense</h4>
-        <p id="money-minus" class="money minus">-$0.00</p>
-      </div>
+    <!-- Navigation -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+      <button class="nav-tab" data-tab="categories">Categories</button>
     </div>
 
-    <h3>History</h3>
-    <ul id="list" class="list"></ul>
+    <!-- Dashboard Tab -->
+    <div id="dashboard" class="tab-content active">
+      <h2>Expense Tracker</h2>
+      <h3>Your Balance</h3>
+      <h1 id="balance">$0.00</h1>
 
-    <h3>Add New Transaction</h3>
-    <form id="form">
-      <div class="form-control">
-        <label for="text">Text</label>
-        <input type="text" id="text" placeholder="Enter text..." />
-      </div>
-      <div class="form-control">
-        <label for="amount">Amount</label>
-        <input type="number" id="amount" placeholder="Enter amount..." />
+      <div class="inc-exp-container">
+        <div>
+          <h4>Income</h4>
+          <p id="money-plus" class="money plus">+$0.00</p>
+        </div>
+        <div>
+          <h4>Expense</h4>
+          <p id="money-minus" class="money minus">-$0.00</p>
+        </div>
       </div>
 
-      <div class="form-control radio-group">
-        <label>
-          <input type="radio" name="transactionType" value="expense" checked>
-          Expense
-        </label>
-        <label>
-          <input type="radio" name="transactionType" value="income">
-          Income
-        </label>
+      <h3>History</h3>
+      <ul id="list" class="list"></ul>
+
+      <h3>Add New Transaction</h3>
+      <form id="form">
+        <div class="form-control">
+          <label for="text">Description</label>
+          <input type="text" id="text" placeholder="Enter description..." />
+        </div>
+        <div class="form-control">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" placeholder="Enter amount..." />
+        </div>
+
+        <div class="form-control">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="">Select Category</option>
+          </select>
+        </div>
+
+        <div class="form-control radio-group">
+          <label>
+            <input type="radio" name="transactionType" value="expense" checked>
+            Expense
+          </label>
+          <label>
+            <input type="radio" name="transactionType" value="income">
+            Income
+          </label>
+        </div>
+        <button class="btn">Add Transaction</button>
+      </form>
+    </div>
+
+    <!-- Categories Tab -->
+    <div id="categories" class="tab-content">
+      <h2>Manage Categories</h2>
+      
+      <h3>Add New Category</h3>
+      <form id="category-form">
+        <div class="form-control">
+          <label for="category-name">Category Name</label>
+          <input type="text" id="category-name" placeholder="Enter category name..." />
+        </div>
+        <div class="form-control radio-group">
+          <label>
+            <input type="radio" name="categoryType" value="expense" checked>
+            Expense Category
+          </label>
+          <label>
+            <input type="radio" name="categoryType" value="income">
+            Income Category
+          </label>
+        </div>
+        <button class="btn">Add Category</button>
+      </form>
+
+      <h3>Existing Categories</h3>
+      <div class="categories-container">
+        <div class="category-section">
+          <h4>Income Categories</h4>
+          <ul id="income-categories" class="category-list"></ul>
+        </div>
+        <div class="category-section">
+          <h4>Expense Categories</h4>
+          <ul id="expense-categories" class="category-list"></ul>
+        </div>
       </div>
-      <button class="btn">Add Transaction</button>
-    </form>
+    </div>
   </div>
 
   <script src="script.js"></script>
