@@ -12,7 +12,7 @@
     <h3>Your Balance</h3>
     <h1 id="balance">$0.00</h1>
 
-    <div class="inc-exp-container">
+    <div class="summary">
       <div>
         <h4>Income</h4>
         <p id="money-plus" class="money plus">+$0.00</p>
@@ -24,13 +24,22 @@
     </div>
 
     <h3>History</h3>
-    <ul id="list" class="list"></ul>
+    <table class="list" id="list-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
 
     <h3>Add New Transaction</h3>
     <form id="form">
       <div class="form-control">
-        <label for="text">Text</label>
-        <input type="text" id="text" placeholder="Enter text..." />
+        <label for="text">Description</label>
+        <input type="text" id="text" placeholder="Enter description..." />
       </div>
       <div class="form-control">
         <label for="amount">Amount</label>
@@ -38,14 +47,8 @@
       </div>
 
       <div class="form-control radio-group">
-        <label>
-          <input type="radio" name="transactionType" value="expense" checked>
-          Expense
-        </label>
-        <label>
-          <input type="radio" name="transactionType" value="income">
-          Income
-        </label>
+        <label><input type="radio" name="transactionType" value="expense" checked> Expense</label>
+        <label><input type="radio" name="transactionType" value="income"> Income</label>
       </div>
       <button class="btn">Add Transaction</button>
     </form>
