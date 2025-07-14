@@ -83,3 +83,20 @@ input, button {
   gap: 0.3rem;
   margin: 0;
 }
+
+.delete-btn {
+  background: #d12e0d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  margin-left: 10px;
+}
+
+.delete-btn:hover {
+  background: #da8b1c;
+}
