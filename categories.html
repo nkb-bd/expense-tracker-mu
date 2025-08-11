@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Expense Tracker — Categories</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <nav class="nav">
+    <a href="./index.html" class="brand">💸 Expense Tracker</a>
+    <div class="links">
+      <a href="./index.html" class="chip">Tracker</a>
+      <a href="./categories.html" class="chip active">Categories</a>
+    </div>
+  </nav>
+
+
+  <div class="container" id="view-categories" aria-labelledby="nav-cats">
+    <h2>Categories</h2>
+    <p class="subtle">
+      Create and remove categories. Deleting a category moves its transactions to
+      <span class="badge-light">General</span>.
+    </p>
+
+    <form id="cat-form" class="form" autocomplete="off">
+      <div class="form-control">
+        <label for="cat-name">New category name</label>
+        <input id="cat-name" type="text" placeholder="Utilities"/>
+      </div>
+      <button class="btn" type="submit">Add Category</button>
+    </form>
+
+    <h3 style="margin-top:16px">All Categories</h3>
+    <ul id="cat-list" class="category-list"></ul>
+  </div>
+</body>
+</html>
